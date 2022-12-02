@@ -70,7 +70,7 @@ public class Manager {
                 System.out.print("| " + rs.getInt(1) + " ");
                 System.out.print("| " + rs.getString(2) + " ");
                 System.out.print("| " + rs.getInt(3) + " ");
-                System.out.print("| " + rs.getInt(3) + " ");
+                System.out.print("| " + rs.getInt(4) + " ");
                 System.out.print("|");
             }
         } catch (Exception e) {
@@ -127,8 +127,8 @@ public class Manager {
         System.out.println("| Manufacturer ID | Manufacturer Name | Total Sales Value |");
         while (rs.next()) {
             System.out.print("| " + rs.getInt(1) + " ");
-            System.out.print("| " + rs.getString(1) + " ");
-            System.out.print("| " + rs.getInt(1) + " ");
+            System.out.print("| " + rs.getString(2) + " ");
+            System.out.print("| " + rs.getInt(3) + " ");
             System.out.println("|");
         }
         System.out.println("End of Query");
