@@ -49,8 +49,8 @@ public class Manager {
             Scanner input = new Scanner(System.in);
             int choice = input.nextInt();
 
-            String query = "SELECT s_id, s_name, s_phone_number, s_experience\n" +
-                    "FROM salesperson\n" +
+            String query = "SELECT s_id, s_name, s_phone_number, s_experience " +
+                    "FROM salesperson " +
                     "ORDER BY s_experience ";
             String order = "";
 
@@ -61,6 +61,8 @@ public class Manager {
             }
 
             String sql = query + order;
+            
+            stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             System.out.println("| ID | Name | Mobile Phone | Years of Experience |");
@@ -88,12 +90,13 @@ public class Manager {
             Scanner input2 = new Scanner(System.in);
             int upper = input2.nextInt();
 
-            String sql = "SELECT s.s_id, s.s_name, s.s_experience, COUNT(t.s_id)\n" +
-                    "FROM salesperson s LEFT JOIN\n" +
-                    "transaction t ON t.s_id = s.s_id\n" +
-                    "WHERE s.s_experience >= " + lower + "AND s.s_experience <= " + upper + "\n" +
-                    "GROUP BY s.s_id\n" +
+            String sql = "SELECT s.s_id, s.s_name, s.s_experience, COUNT(t.s_id) " +
+                    "FROM salesperson s LEFT JOIN " +
+                    "transaction t ON t.s_id = s.s_id " +
+                    "WHERE s.s_experience >= " + lower + "AND s.s_experience <= " + upper + " " +
+                    "GROUP BY s.s_id " +
                     "ORDER BY s.s_id DESC";
+            stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             System.out.println("| ID | Name | Years of Experience | Number of Transaction |");
@@ -112,11 +115,13 @@ public class Manager {
 
     public static void showTotalSalesValue() throws SQLException {
         Statement stmt = null;
-        String sql = "SELECT m.mid, m.mname, SUM(p.pprice) AS [Total Sales Value]\n" +
-                "FROM manufacturer m LEFT JOIN\n" +
-                "part p on p.mid = m.mid\n" +
-                "GROUP BY m.mid\n" +
+        String sql = "SELECT m.mid, m.mname, SUM(p.pprice) AS [Total Sales Value] " +
+                "FROM manufacturer m LEFT JOIN " +
+                "part p on p.mid = m.mid " +
+                "GROUP BY m.mid " +
                 "ORDER BY SUM(p.pprice) DESC";
+        
+        stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
         System.out.println("| Manufacturer ID | Manufacturer Name | Total Sales Value |");
@@ -137,12 +142,14 @@ public class Manager {
             Scanner input = new Scanner(System.in);
             int number = input.nextInt();
 
-            String sql = "SELECT p.pid, p.pname, COUNT(t.p_id) AS [No. of Transaction]\n" +
-                    "FROM part p LEFT JOIN\n" +
-                    "transaction t on t.p_id = p.pid\n" +
-                    "GROUP BY p.pid\n" +
-                    "ORDER BY COUNT(t.p_id) DESC\n" +
+            String sql = "SELECT p.pid, p.pname, COUNT(t.p_id) AS [No. of Transaction] " +
+                    "FROM part p LEFT JOIN " +
+                    "transaction t on t.p_id = p.pid " +
+                    "GROUP BY p.pid " +
+                    "ORDER BY COUNT(t.p_id) DESC " +
                     "LIMIT " + number;
+            
+            stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             System.out.println("| Part ID | Part Name | No. of Transaction |");
