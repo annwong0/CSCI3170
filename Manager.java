@@ -49,7 +49,7 @@ public class Manager {
             Scanner input = new Scanner(System.in);
             int choice = input.nextInt();
 
-            String query = "SELECT s_id, s_name, s_phone_number, s_experience " +
+            String query = "SELECT sid, sname, sphonenumber, sexperience " +
                     "FROM salesperson " +
                     "ORDER BY s_experience ";
             String order = "";
@@ -90,12 +90,12 @@ public class Manager {
             Scanner input2 = new Scanner(System.in);
             int upper = input2.nextInt();
 
-            String sql = "SELECT s.s_id, s.s_name, s.s_experience, COUNT(t.s_id) " +
+            String sql = "SELECT s.sid, s.sname, s.sexperience, COUNT(t.sid) " +
                     "FROM salesperson s LEFT JOIN " +
                     "transaction t ON t.s_id = s.s_id " +
-                    "WHERE s.s_experience >= " + lower + "AND s.s_experience <= " + upper + " " +
-                    "GROUP BY s.s_id " +
-                    "ORDER BY s.s_id DESC";
+                    "WHERE s.sexperience >= " + lower + "AND s.sexperience <= " + upper + " " +
+                    "GROUP BY s.sid " +
+                    "ORDER BY s.sid DESC";
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -142,11 +142,11 @@ public class Manager {
             Scanner input = new Scanner(System.in);
             int number = input.nextInt();
 
-            String sql = "SELECT p.pid, p.pname, COUNT(t.p_id) AS [No. of Transaction] " +
+            String sql = "SELECT p.pid, p.pname, COUNT(t.pid) AS [No. of Transaction] " +
                     "FROM part p LEFT JOIN " +
-                    "transaction t on t.p_id = p.pid " +
+                    "transaction t on t.pid = p.pid " +
                     "GROUP BY p.pid " +
-                    "ORDER BY COUNT(t.p_id) DESC " +
+                    "ORDER BY COUNT(t.pid) DESC " +
                     "LIMIT " + number;
             
             stmt = con.createStatement();
