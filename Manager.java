@@ -51,7 +51,7 @@ public class Manager {
 
             String query = "SELECT sid, sname, sphonenumber, sexperience " +
                     "FROM salesperson " +
-                    "ORDER BY s_experience ";
+                    "ORDER BY sexperience ";
             String order = "";
 
             if (choice == 1) {
@@ -92,7 +92,7 @@ public class Manager {
 
             String sql = "SELECT s.sid, s.sname, s.sexperience, COUNT(t.sid) " +
                     "FROM salesperson s LEFT JOIN " +
-                    "transaction t ON t.s_id = s.s_id " +
+                    "transaction t ON t.sid = s.sid " +
                     "WHERE s.sexperience >= " + lower + "AND s.sexperience <= " + upper + " " +
                     "GROUP BY s.sid " +
                     "ORDER BY s.sid DESC";
@@ -138,7 +138,7 @@ public class Manager {
         Statement stmt = null;
 
         try {
-            System.out.print("Type in the number of parts ");
+            System.out.print("Type in the number of parts: ");
             Scanner input = new Scanner(System.in);
             int number = input.nextInt();
 
