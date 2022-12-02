@@ -62,7 +62,7 @@ public class Manager {
 
             String sql = query + order;
             
-            stmt = con.createStatement();
+            stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             System.out.println("| ID | Name | Mobile Phone | Years of Experience |");
@@ -96,7 +96,7 @@ public class Manager {
                     "WHERE s.sexperience >= " + lower + "AND s.sexperience <= " + upper + " " +
                     "GROUP BY s.sid " +
                     "ORDER BY s.sid DESC";
-            stmt = con.createStatement();
+            stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             System.out.println("| ID | Name | Years of Experience | Number of Transaction |");
@@ -121,7 +121,7 @@ public class Manager {
                 "GROUP BY m.mid " +
                 "ORDER BY SUM(p.pprice) DESC";
         
-        stmt = con.createStatement();
+        stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
         System.out.println("| Manufacturer ID | Manufacturer Name | Total Sales Value |");
@@ -149,7 +149,7 @@ public class Manager {
                     "ORDER BY COUNT(t.pid) DESC " +
                     "LIMIT " + number;
             
-            stmt = con.createStatement();
+            stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             System.out.println("| Part ID | Part Name | No. of Transaction |");
